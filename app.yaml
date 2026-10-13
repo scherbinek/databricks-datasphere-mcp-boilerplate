@@ -1,0 +1,19 @@
+# Databricks Apps runtime. The process must listen on 0.0.0.0 and
+# DATABRICKS_APP_PORT. main.py does that and serves Streamable HTTP at /mcp.
+command:
+  - python
+  - main.py
+
+env:
+  # Tenant URL with no path. Example: https://tenant.eu10.hcs.cloud.sap
+  - name: DATASPHERE_BASE_URL
+    value: "https://your-tenant.eu10.hcs.cloud.sap"
+  # Token URL from System > Administration > App Integration.
+  - name: DATASPHERE_TOKEN_URL
+    value: "https://your-tenant.authentication.eu10.hana.ondemand.com/oauth/token"
+  # Resource keys. Add two secret resources on the Databricks app with these keys,
+  # each pointing at a key in a Databricks secret scope. Do not put the secret values here.
+  - name: DATASPHERE_CLIENT_ID
+    valueFrom: datasphere-client-id
+  - name: DATASPHERE_CLIENT_SECRET
+    valueFrom: datasphere-client-secret
